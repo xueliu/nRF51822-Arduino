@@ -11,9 +11,9 @@ Requirement
 ===========
 
 1. nRF51822 deveopment board, here we will use RBL nRF51822 as an example.
-2. Arduino IDE version 1.5.8 (currently tested version).
+2. Arduino IDE version 1.6.2 (currently tested version).
 3. PC with one of the following OS:
-    - Mac OSX 10.9 (Mavericks) / 10.10 (Yosemite) (currently tested version).    <- Read Note 2
+    - Mac OSX 10.9 (Mavericks) / 10.10.3 (Yosemite) (currently tested version).    <- Read Note 2
     - Windows 7 and 8.x (currently tested version).
     - Linux (currently tested on Ubuntu 14.04).
 
@@ -21,30 +21,33 @@ Note 1:
 If you have changed the USB interface firmware (MK20 chip) for some reasons, follow the instructions inside the **MK20** folder to restore it in order to use this add-on for Arduino IDE.
 
 Note 2:
-For Mac OSX 10.10 (Yosemite), Apple changed the security checking so it will think our MK20 USB dongle firmware is not securer, and it will mount it as read only, thus, you cannot drag the bootloader firmware to it. This will be fixed as soon as possible.
+For Mac OSX 10.10.0 - 10.10.2 (Yosemite), Apple changed the security checking so it will think our MK20 USB dongle firmware is not securer, and it will mount it as read only, thus, you cannot drag the bootloader firmware to it.
 
-A workaround using Terminal:
+This problem has been fixed with 10.10.3, please update your OSX.
+
+A workaround using Terminal if you are using 10.10.0 - 10.10.2:
 sudo mount -u -w -o sync /Volumes/MBED ; cp -X bootloader.hex /Volumes/MBED/
 
-Thanks to @okano for this and you can use his droplet to do drag and drop without using the Terminal:
+Thanks @okano for this and you can use his droplet to do drag and drop without using the Terminal:
 https://developer.mbed.org/users/okano/notebook/mbed-on-yosemite/?c=14179
 
 
 Install nRF51822 Arduino Add-on
 ===============================
 
-1. Get Arduino IDE version 1.5.8 from Arduino website and install it to your PC
+1. Get Arduino IDE version 1.6.2 from Arduino website and install it to your PC
 
     http://arduino.cc/en/Main/Software
+    
+2. Install the "Arduino SAM Boards" add-on via Board Manager: Tools -> Board -> Board Manager ... 
 
-2. Get or clone this repository and put the files to appropriate folder.
+3. Get or clone this repository and copy the "RBL" folder from "arduino-1.5.x/hardware" into  "~/Documents/Arduino/hardware" (if the "hardware" folder does not exist, create it)
 
-  - in your Arduino IDE folder, inside hardware/arduino, you should see
-    - avr
-    - RBL_nRF51822
-    - sam
+Mac OSX:
+Documents > Arduino
 
-  - replace the file in hardware/tools/avr/etc/avrdude.conf
+Windows:
+C: > Users > YourName > Documents > Arduino
 
 
 Install USB CDC Driver
@@ -87,6 +90,10 @@ How to Play
   Select the RBL nRF51822 board in the menu of Arduino IDE and serial port.
 
     Menu > Tools > Board > RBL nRF51822
+    
+  If you are using our BLE Nano board,
+
+    Menu > Tools > Board > BLE Nano
   
 2. Blink
 
